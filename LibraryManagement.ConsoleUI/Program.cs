@@ -81,6 +81,45 @@ List<Category> categories = new List<Category>()
 };
 
 
+GetAllBooks();
+GetAllAuthors();
+GetAllCategories();
 
 
-Console.WriteLine("Hello, World!");
+
+
+
+void GetAllBooks()
+{
+    PrintAyirac("Kitapları Listele:");
+
+    foreach (Book book in books)
+    {
+        Console.WriteLine(book);
+    }
+}
+
+void GetAllCategories()
+{
+    PrintAyirac("Kategorileri Listele");
+    foreach (Category category in categories)
+    {
+        Console.WriteLine(category);
+    }
+}
+
+void GetAllAuthors()
+{
+    PrintAyirac("Yazarları Listele: ");
+ 
+    foreach (Author author in authors)
+    {
+        Console.WriteLine(author);
+    }
+}
+
+void PrintAyirac(string metin)
+{
+    Console.WriteLine(metin);
+    Console.WriteLine("----------------------------------------");
+}
