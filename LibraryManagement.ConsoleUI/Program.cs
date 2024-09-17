@@ -91,56 +91,98 @@ List<Category> categories = new List<Category>()
 //GetAllBooksByTitleContains();
 
 //GetBookByISBN();
-Add();
+AddBook();
 
-void Add()
+
+
+Book GetBookInputs2()
 {
-    PrintAyirac("Kitap Ekleme: ");
     Console.WriteLine("Lütfen kitap id sini giriniz: ");
-    int id = Convert.ToInt32(Console.ReadLine());
+   int id = Convert.ToInt32(Console.ReadLine());
 
     Console.WriteLine("Lütfen kitap başlığını giriniz: ");
     string title = Console.ReadLine();
 
     Console.WriteLine("Lütfen kitap Açıklamasını giriniz: ");
-    string description = Console.ReadLine();
+   string description = Console.ReadLine();
 
     Console.WriteLine("Lütfen kitap sayfasını giriniz: ");
-    int pageSize = Convert.ToInt32(Console.ReadLine());
+   int pageSize = Convert.ToInt32(Console.ReadLine());
 
     Console.WriteLine("Lütfen kitap Yayımlanma Tarihini giriniz: ");
-    string publishDate = Console.ReadLine();
+   string publishDate = Console.ReadLine();
 
     Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
     string isbn = Console.ReadLine();
 
-    Book book = new Book(id,title,description,pageSize,publishDate,isbn);
+    Book book = new Book(id, title, description, pageSize, publishDate, isbn);
+    return book;
+}
 
+bool AddBookValidator(Book book)
+{
     bool isUnique = true;
 
     foreach (Book item in books)
     {
-        if(item.Id == id || item.ISBN == isbn)
+        if (item.Id == book.Id || item.ISBN == book.ISBN)
         {
             isUnique = false;
             break;
         }
     }
 
+    return isUnique;
+}
+
+void GetBookInputs(out int id,
+     out string title,
+     out string description,
+     out int pageSize,
+     out string publishDate,
+     out string isbn)
+{
+    Console.WriteLine("Lütfen kitap id sini giriniz: ");
+    id = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
+     title = Console.ReadLine();
+
+    Console.WriteLine("Lütfen kitap Açıklamasını giriniz: ");
+     description = Console.ReadLine();
+
+    Console.WriteLine("Lütfen kitap sayfasını giriniz: ");
+     pageSize = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Lütfen kitap Yayımlanma Tarihini giriniz: ");
+     publishDate = Console.ReadLine();
+
+    Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
+     isbn = Console.ReadLine();
+}
+
+void AddBook()
+{
+    //1. Yöntem
+    //int id;
+    //string title;
+    //string description;
+    //int pageSize;
+    //string publishDate;
+    //string isbn;
+
+    //GetBookInputs(out id,out title,out description,out pageSize,out publishDate,out isbn);
+    Book book = GetBookInputs2();
+
+    bool isUnique = AddBookValidator(book);
+
     if (!isUnique)
     {
         Console.WriteLine("Girmiş olduğunuz kitap Benzersiz değil.");
         return;
     }
-
-
     books.Add(book);
-
-    foreach (Book item in books)
-    {
-        Console.WriteLine(item);
-    }
-
+    GetAllBooks();
 }
 
 void GetBookByISBN()
