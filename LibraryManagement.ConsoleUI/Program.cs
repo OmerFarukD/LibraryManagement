@@ -73,21 +73,68 @@ List<Author> authors = new List<Author>()
 };
 
 
+
 List<Category> categories = new List<Category>()
 {
     new Category(1,"Dünya Klasikleri"),
     new Category(2,"Türk Klasikleri"),
     new Category(3,"Bilim Kurgu")
 };
+//GetAllBooksByPageSizeFilter();
+
+//GetAllBooks();
+//GetAllAuthors();
+//GetAllCategories();
+//PageSizeTotalCalculator();
+
+//GetAllBooksByTitleContains();
+
+GetBookByISBN();
 
 
-GetAllBooks();
-GetAllAuthors();
-GetAllCategories();
+void GetBookByISBN()
+{
+    Console.WriteLine("Lütfen ISBN numarasını giriniz: ");
+    string isbn = Console.ReadLine();
+
+    foreach (Book book in books)
+    {
+        if (book.ISBN == isbn)
+        {
+            Console.WriteLine(book);
+        }
+    }
+}
+void GetAllBooksByTitleContains()
+{
+    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
+    string text = Console.ReadLine();
+
+    foreach (Book book in books)
+    {
+        if (book.Title.Contains(text,StringComparison.InvariantCultureIgnoreCase))
+        {
+            Console.WriteLine(book);
+        }
+    }
+}
+
+void PageSizeTotalCalculator()
+{
+    int total = 0;
+    //for (int i =0;i<books.Count;i++)
+    //{
+    //    total = books[i].PageSize + total;
+    //}
+
+    foreach (var item in books)
+    {
+        total = total + item.PageSize;
+    }
 
 
-
-
+    Console.WriteLine(total);
+}
 
 void GetAllBooks()
 {
@@ -122,4 +169,25 @@ void PrintAyirac(string metin)
 {
     Console.WriteLine(metin);
     Console.WriteLine("----------------------------------------");
+}
+
+
+void GetAllBooksByPageSizeFilter()
+{
+    PrintAyirac("Sayfa Sayısına göre filtreleme");
+
+    Console.WriteLine("Lütfen minimum değeri giriniz: ");
+    int min = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Lütfen maximum değeri giriniz: ");
+    int max = Convert.ToInt32(Console.ReadLine());
+
+    foreach (Book book in books)
+    {
+        if(book.PageSize<=max && book.PageSize >= min)
+        {
+            Console.WriteLine(book);
+        }
+    }
+
 }
