@@ -46,6 +46,7 @@
 
 
 using LibraryManagement.ConsoleUI;
+using System.ComponentModel;
 
 List<Book> books = new List<Book>()
 {
@@ -89,8 +90,58 @@ List<Category> categories = new List<Category>()
 
 //GetAllBooksByTitleContains();
 
-GetBookByISBN();
+//GetBookByISBN();
+Add();
 
+void Add()
+{
+    PrintAyirac("Kitap Ekleme: ");
+    Console.WriteLine("Lütfen kitap id sini giriniz: ");
+    int id = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
+    string title = Console.ReadLine();
+
+    Console.WriteLine("Lütfen kitap Açıklamasını giriniz: ");
+    string description = Console.ReadLine();
+
+    Console.WriteLine("Lütfen kitap sayfasını giriniz: ");
+    int pageSize = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Lütfen kitap Yayımlanma Tarihini giriniz: ");
+    string publishDate = Console.ReadLine();
+
+    Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
+    string isbn = Console.ReadLine();
+
+    Book book = new Book(id,title,description,pageSize,publishDate,isbn);
+
+    bool isUnique = true;
+
+    foreach (Book item in books)
+    {
+        if(item.Id == id || item.ISBN == isbn)
+        {
+            isUnique = false;
+            break;
+        }
+    }
+
+    if (!isUnique)
+    {
+        Console.WriteLine("Girmiş olduğunuz kitap Benzersiz değil.");
+        return;
+    }
+
+
+    books.Add(book);
+
+    foreach (Book item in books)
+    {
+        Console.WriteLine(item);
+    }
+
+}
 
 void GetBookByISBN()
 {
