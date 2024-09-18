@@ -45,6 +45,41 @@ public class BookRepository
 
     public List<Book> GetAllBooksByTitleContains(string text)
     {
+        List<Book> filteredBooks = new List<Book>();
+        foreach(Book book in books)
+        {
+            if (book.Title.Contains(text,StringComparison.InvariantCultureIgnoreCase))
+            {
+                filteredBooks.Add(book);
+            }
+        }
+        return filteredBooks;
+    }
 
+    public Book? GetBookByISBN(string isbn)
+    {
+
+        foreach (Book item in books)
+        {
+            if (item.ISBN==isbn)
+            {
+                Book book1 = new Book
+                    (
+                    item.Id,
+                    item.Title,
+                    item.Description,
+                    item.PageSize,
+                    item.PublishDate,
+                    item.ISBN
+                    );
+            }
+
+        }
+        if (book1 == null)
+        {
+            return null;
+        }
+
+        return book1;
     }
 }

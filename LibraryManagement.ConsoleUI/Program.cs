@@ -192,19 +192,6 @@ void GetBookByISBN()
 }
 
 
-void GetAllBooksByTitleContains()
-{
-    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
-    string text = Console.ReadLine();
-
-    foreach (Book book in books)
-    {
-        if (book.Title.Contains(text,StringComparison.InvariantCultureIgnoreCase))
-        {
-            Console.WriteLine(book);
-        }
-    }
-}
 
 
 
