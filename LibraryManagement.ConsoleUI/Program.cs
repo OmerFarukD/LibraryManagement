@@ -49,7 +49,7 @@
 
 
 using LibraryManagement.ConsoleUI.Models;
-using System.ComponentModel;
+using LibraryManagement.ConsoleUI.Service;
 
 
 
@@ -75,7 +75,6 @@ List<Category> categories = new List<Category>()
 };
 //GetAllBooksByPageSizeFilter();
 
-GetAllBooks();
 //GetAllAuthors();
 //GetAllCategories();
 //PageSizeTotalCalculator();
@@ -83,7 +82,13 @@ GetAllBooks();
 //GetAllBooksByTitleContains();
 
 //GetBookByISBN();
-AddBook();
+
+BookService bookService = new BookService();
+//bookService.GetAll();
+//bookService.GetById(3);
+
+bookService.GetBookByISBN("9781234567800");
+
 
 
 
@@ -111,112 +116,71 @@ Book GetBookInputs2()
     return book;
 }
 
-bool AddBookValidator(Book book)
-{
-    bool isUnique = true;
+//bool AddBookValidator(Book book)
+//{
+//    bool isUnique = true;
 
-    foreach (Book item in books)
-    {
-        if (item.Id == book.Id || item.ISBN == book.ISBN)
-        {
-            isUnique = false;
-            break;
-        }
-    }
+//    foreach (Book item in books)
+//    {
+//        if (item.Id == book.Id || item.ISBN == book.ISBN)
+//        {
+//            isUnique = false;
+//            break;
+//        }
+//    }
 
-    return isUnique;
-}
+//    return isUnique;
+//}
 
-void GetBookInputs(out int id,
-     out string title,
-     out string description,
-     out int pageSize,
-     out string publishDate,
-     out string isbn)
-{
-    Console.WriteLine("Lütfen kitap id sini giriniz: ");
-    id = Convert.ToInt32(Console.ReadLine());
+//void GetBookInputs(out int id,
+//     out string title,
+//     out string description,
+//     out int pageSize,
+//     out string publishDate,
+//     out string isbn)
+//{
+//    Console.WriteLine("Lütfen kitap id sini giriniz: ");
+//    id = Convert.ToInt32(Console.ReadLine());
 
-    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
-     title = Console.ReadLine();
+//    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
+//     title = Console.ReadLine();
 
-    Console.WriteLine("Lütfen kitap Açıklamasını giriniz: ");
-     description = Console.ReadLine();
+//    Console.WriteLine("Lütfen kitap Açıklamasını giriniz: ");
+//     description = Console.ReadLine();
 
-    Console.WriteLine("Lütfen kitap sayfasını giriniz: ");
-     pageSize = Convert.ToInt32(Console.ReadLine());
+//    Console.WriteLine("Lütfen kitap sayfasını giriniz: ");
+//     pageSize = Convert.ToInt32(Console.ReadLine());
 
-    Console.WriteLine("Lütfen kitap Yayımlanma Tarihini giriniz: ");
-     publishDate = Console.ReadLine();
+//    Console.WriteLine("Lütfen kitap Yayımlanma Tarihini giriniz: ");
+//     publishDate = Console.ReadLine();
 
-    Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
-     isbn = Console.ReadLine();
-}
-
-void AddBook()
-{
-    //1. Yöntem
-    //int id;
-    //string title;
-    //string description;
-    //int pageSize;
-    //string publishDate;
-    //string isbn;
-
-    //GetBookInputs(out id,out title,out description,out pageSize,out publishDate,out isbn);
-    Book book = GetBookInputs2();
-
-    bool isUnique = AddBookValidator(book);
-
-    if (!isUnique)
-    {
-        Console.WriteLine("Girmiş olduğunuz kitap Benzersiz değil.");
-        return;
-    }
-    books.Add(book);
-    GetAllBooks();
-}
-
-void GetBookByISBN()
-{
-    Console.WriteLine("Lütfen ISBN numarasını giriniz: ");
-    string isbn = Console.ReadLine();
-
-    foreach (Book book in books)
-    {
-        if (book.ISBN == isbn)
-        {
-            Console.WriteLine(book);
-        }
-    }
-}
+//    Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
+//     isbn = Console.ReadLine();
+//}
 
 
+//void GetAllCategories()
+//{
+//    PrintAyirac("Kategorileri Listele");
+//    foreach (Category category in categories)
+//    {
+//        Console.WriteLine(category);
+//    }
+//}
 
-
-
-void GetAllCategories()
-{
-    PrintAyirac("Kategorileri Listele");
-    foreach (Category category in categories)
-    {
-        Console.WriteLine(category);
-    }
-}
-
-void GetAllAuthors()
-{
-    PrintAyirac("Yazarları Listele: ");
+//void GetAllAuthors()
+//{
+//    PrintAyirac("Yazarları Listele: ");
  
-    foreach (Author author in authors)
-    {
-        Console.WriteLine(author);
-    }
-}
+//    foreach (Author author in authors)
+//    {
+//        Console.WriteLine(author);
+//    }
+//}
 
-void PrintAyirac(string metin)
-{
-    Console.WriteLine(metin);
-    Console.WriteLine("----------------------------------------");
-}
+//void PrintAyirac(string metin)
+//{
+//    Console.WriteLine(metin);
+//    Console.WriteLine("----------------------------------------");
+//}
 

@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.ConsoleUI.Models;
+using LibraryManagement.ConsoleUI.Service;
 
 namespace LibraryManagement.ConsoleUI.Repository;
 
@@ -58,20 +59,12 @@ public class BookRepository
 
     public Book? GetBookByISBN(string isbn)
     {
-
+        Book book1 = null;
         foreach (Book item in books)
         {
             if (item.ISBN==isbn)
             {
-                Book book1 = new Book
-                    (
-                    item.Id,
-                    item.Title,
-                    item.Description,
-                    item.PageSize,
-                    item.PublishDate,
-                    item.ISBN
-                    );
+                book1 = item;
             }
 
         }
@@ -81,5 +74,42 @@ public class BookRepository
         }
 
         return book1;
+    }
+
+    public Book Add(Book created)
+    {
+        books.Add(created);
+        return created;
+    }
+
+    public Book? GetById(int id)
+    {
+        Book? book1 = null;
+        foreach (Book book in books)
+        {
+            if (book.Id==id)
+            {
+                book1 = book;
+            }
+        }
+
+        if (book1 == null)
+        {
+            return null;
+        }
+
+        return book1;
+    }
+
+    public Book? Remove(int id)
+    {
+        Book? deletedBook = GetById(id);
+
+        if (deletedBook is null) 
+        {
+            return null;
+        }
+        books.Remove(deletedBook);
+        return deletedBook;
     }
 }
