@@ -1,7 +1,10 @@
 ﻿//(Record) Kitap -> Id,Title , Description, PageSize, PublishDate, ISBN , Stock
 //(Record) Author -> Id,Name, Surname
-//(Class) Category -> Id,Name 
+//(Cbelass) Category -> Id,Name alanı 
 
+
+// Category eklerken -> Id veya Name alanları benzersiz olmalı 
+// Author eklerken Id (name surname)
 
 //Kitaplar listesi oluşturunuz
 //Yazarlar   "         "
@@ -45,21 +48,10 @@
 // Kullanıcıdan PageIndex ve PageSize değerlerini alarak sayfalama desteği getiriniz.
 
 
-using LibraryManagement.ConsoleUI;
+using LibraryManagement.ConsoleUI.Models;
 using System.ComponentModel;
 
-List<Book> books = new List<Book>()
-{
-    new Book(1,"Germinal","Kömür Madeni",341,"2012 Mayıs","9781234567897"),
-    new Book(2,"Suç ve Ceza","Raskolnikov un hayatı",315,"2010 Haziran","9781234567891"),
-    new Book(3,"Kumarbaz","Bir Öğretmenin hayatı",210,"2009 Ocak","9781234567892"),
-    new Book(4, "Araba Sevdası","Arabayla alakası olmayan Kitap",180,"1999 Ocak","9781234567838"),
-    new Book(5,"Ateşten Gömlek","Kurtulu savaşını anlatan kitap",120,"2001 Eylül","9781234567834"),
-    new Book(6,"Kaşağı","Okunmaması gereken bir kitap",95,"1993 Ocak","9781234567845"),
-    new Book(7,"28 Şampiyonluk","Hayal ürünüdür",350,"1907 Ocak ","9781234567807"),
-    new Book(8,"16 Yıl Şampiyonluk","Hayal ürünüdür.",255,"10 Eylül","9781234567800"),
-    new Book(9,"Ali Arı","Uyanık Ceo nun hikayesi",551,"20 Haziran","9781234567800")
-};
+
 
 
 List<Author> authors = new List<Author>()
@@ -83,7 +75,7 @@ List<Category> categories = new List<Category>()
 };
 //GetAllBooksByPageSizeFilter();
 
-//GetAllBooks();
+GetAllBooks();
 //GetAllAuthors();
 //GetAllCategories();
 //PageSizeTotalCalculator();
@@ -198,6 +190,8 @@ void GetBookByISBN()
         }
     }
 }
+
+
 void GetAllBooksByTitleContains()
 {
     Console.WriteLine("Lütfen kitap başlığını giriniz: ");
@@ -212,32 +206,7 @@ void GetAllBooksByTitleContains()
     }
 }
 
-void PageSizeTotalCalculator()
-{
-    int total = 0;
-    //for (int i =0;i<books.Count;i++)
-    //{
-    //    total = books[i].PageSize + total;
-    //}
 
-    foreach (var item in books)
-    {
-        total = total + item.PageSize;
-    }
-
-
-    Console.WriteLine(total);
-}
-
-void GetAllBooks()
-{
-    PrintAyirac("Kitapları Listele:");
-
-    foreach (Book book in books)
-    {
-        Console.WriteLine(book);
-    }
-}
 
 void GetAllCategories()
 {
@@ -264,23 +233,3 @@ void PrintAyirac(string metin)
     Console.WriteLine("----------------------------------------");
 }
 
-
-void GetAllBooksByPageSizeFilter()
-{
-    PrintAyirac("Sayfa Sayısına göre filtreleme");
-
-    Console.WriteLine("Lütfen minimum değeri giriniz: ");
-    int min = Convert.ToInt32(Console.ReadLine());
-
-    Console.WriteLine("Lütfen maximum değeri giriniz: ");
-    int max = Convert.ToInt32(Console.ReadLine());
-
-    foreach (Book book in books)
-    {
-        if(book.PageSize<=max && book.PageSize >= min)
-        {
-            Console.WriteLine(book);
-        }
-    }
-
-}

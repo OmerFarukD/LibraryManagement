@@ -1,4 +1,4 @@
-﻿namespace LibraryManagement.ConsoleUI;
+﻿namespace LibraryManagement.ConsoleUI.Models;
 
 public record Book(
     int Id,
