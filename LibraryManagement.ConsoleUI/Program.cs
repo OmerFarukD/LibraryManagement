@@ -67,12 +67,7 @@ List<Author> authors = new List<Author>()
 
 
 
-List<Category> categories = new List<Category>()
-{
-    new Category(1,"Dünya Klasikleri"),
-    new Category(2,"Türk Klasikleri"),
-    new Category(3,"Bilim Kurgu")
-};
+
 //GetAllBooksByPageSizeFilter();
 
 //GetAllAuthors();
@@ -84,9 +79,9 @@ List<Category> categories = new List<Category>()
 //GetBookByISBN();
 
 BookService bookService = new BookService();
-//bookService.GetAll();
+//bookService.GetAll(); 
 //bookService.GetById(3);
-bookService.GetAllBooksOrderByTitleDescending();
+bookService.GetDetailsV2();
 
 
 
@@ -111,7 +106,7 @@ Book GetBookInputs2()
     Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
     string isbn = Console.ReadLine();
 
-    Book book = new Book(id, title, description, pageSize, publishDate, isbn);
+    Book book = new Book(id,1, title, description, pageSize, publishDate, isbn);
     return book;
 }
 

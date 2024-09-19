@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.ConsoleUI.Models;
+using LibraryManagement.ConsoleUI.Models.Dtos;
 using LibraryManagement.ConsoleUI.Service;
 
 namespace LibraryManagement.ConsoleUI.Repository;
@@ -7,17 +8,23 @@ public class BookRepository
 {
     List<Book> books = new List<Book>()
 {
-    new Book(1,"Germinal","Kömür Madeni",341,"2012 Mayıs","9781234567897"),
-    new Book(2,"Suç ve Ceza","Raskolnikov un hayatı",315,"2010 Haziran","9781234567891"),
-    new Book(3,"Kumarbaz","Bir Öğretmenin hayatı",210,"2009 Ocak","9781234567892"),
-    new Book(4, "Araba Sevdası","Arabayla alakası olmayan Kitap",180,"1999 Ocak","9781234567838"),
-    new Book(5,"Ateşten Gömlek","Kurtulu savaşını anlatan kitap",120,"2001 Eylül","9781234567834"),
-    new Book(6,"Kaşağı","Okunmaması gereken bir kitap",95,"1993 Ocak","9781234567845"),
-    new Book(7,"28 Şampiyonluk","Hayal ürünüdür",350,"1907 Ocak ","9781234567807"),
-    new Book(8,"16 Yıl Şampiyonluk","Hayal ürünüdür.",255,"10 Eylül","9781234567800"),
-    new Book(9,"Ali Arı","Uyanık Ceo nun hikayesi",551,"20 Haziran","9781234567800")
+    new Book(1,1,"Germinal","Kömür Madeni",341,"2012 Mayıs","9781234567897"),
+    new Book(2,1,"Suç ve Ceza","Raskolnikov un hayatı",315,"2010 Haziran","9781234567891"),
+    new Book(3,1,"Kumarbaz","Bir Öğretmenin hayatı",210,"2009 Ocak","9781234567892"),
+    new Book(4,2, "Araba Sevdası","Arabayla alakası olmayan Kitap",180,"1999 Ocak","9781234567838"),
+    new Book(5,2,"Ateşten Gömlek","Kurtulu savaşını anlatan kitap",120,"2001 Eylül","9781234567834"),
+    new Book(6,2,"Kaşağı","Okunmaması gereken bir kitap",95,"1993 Ocak","9781234567845"),
+    new Book(7,3,"28 Şampiyonluk","Hayal ürünüdür",350,"1907 Ocak ","9781234567807"),
+    new Book(8,3,"16 Yıl Şampiyonluk","Hayal ürünüdür.",255,"10 Eylül","9781234567800"),
+    new Book(9,3,"Ali Arı","Uyanık Ceo nun hikayesi",551,"20 Haziran","9781234567800")
 };
-
+    
+    List<Category> categories = new List<Category>()
+{
+    new Category(1,"Dünya Klasikleri"),
+    new Category(2,"Türk Klasikleri"),
+    new Category(3,"Bilim Kurgu")
+};
 
     public List<Book> GetAll()
     {
@@ -152,13 +159,55 @@ public class BookRepository
 
     public Book GetBookMaxPageSize()
     {
-
+        Book book = books.OrderBy(x => x.PageSize).LastOrDefault();
+        return book;
     }
 
 
 
     public Book GetBookMinPageSize()
     {
+        Book book = books.OrderByDescending(x=> x.PageSize).LastOrDefault() ?? books.First();
+        return book;
+    }
 
+    public List<BookDetailDto> GetDetails()
+    {
+        var result =
+            from b in books
+            join c in categories
+            on b.CategoryId equals c.Id
+            select new BookDetailDto(
+                Id: b.Id,
+                CategoryName: c.Name,
+                Title: b.Title,
+                Description: b.Description,
+                PageSize: b.PageSize,
+                PublishDate: b.PublishDate,
+                ISBN: b.ISBN
+                );
+
+        return result.ToList(); 
+    }
+
+    public List<BookDetailDto> GetDetailsV2()
+    {
+        List<BookDetailDto> details =
+            books.Join(categories,
+
+            b => b.CategoryId,
+            c => c.Id,
+            (book, category) => new BookDetailDto(
+                Id: book.Id,
+                CategoryName: category.Name,
+                Title: book.Title,
+                Description: book.Description,
+                PageSize: book.PageSize,
+                PublishDate: book.PublishDate,
+                ISBN: book.ISBN
+                )
+            ).ToList();
+
+        return details;
     }
 }

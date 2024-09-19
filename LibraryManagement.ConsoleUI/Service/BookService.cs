@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.ConsoleUI.Models;
+using LibraryManagement.ConsoleUI.Models.Dtos;
 using LibraryManagement.ConsoleUI.Repository;
 
 namespace LibraryManagement.ConsoleUI.Service;
@@ -97,6 +98,37 @@ public class BookService
         foreach (Book book in books)
         {
             Console.WriteLine(book);
+        }
+    }
+
+    public void GetBookMinPageSize()
+    {
+        Book book = bookRepository.GetBookMinPageSize();
+        Console.WriteLine(book);
+    }
+
+
+    public void GetBookMaxPageSize()
+    {
+        Book book = bookRepository.GetBookMaxPageSize();
+        Console.WriteLine(book);
+    }
+
+    public void GetDetails()
+    {
+        List<BookDetailDto> books = bookRepository.GetDetails();
+        foreach (BookDetailDto bookDetail in books)
+        {
+            Console.WriteLine(bookDetail);
+        }
+    }
+
+    public void GetDetailsV2()
+    {
+        List<BookDetailDto> books = bookRepository.GetDetailsV2();
+        foreach (BookDetailDto bookDetail in books)
+        {
+            Console.WriteLine(bookDetail);
         }
     }
 
