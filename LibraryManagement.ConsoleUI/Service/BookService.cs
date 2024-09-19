@@ -70,5 +70,34 @@ public class BookService
             Console.WriteLine(book);
         }
     }
+    public void GetAllBooksTitleContains(string text)
+    {
+        List<Book> books = bookRepository.GetAllBooksByTitleContains(text);
+
+        foreach (Book book in books)
+        {
+            Console.WriteLine(book);
+        }
+    }
+
+    public void GetAllBooksOrderByTitle()
+    {
+        List<Book> books = bookRepository.GetAllBookOrderByTitle();
+
+        foreach (Book book in books)
+        {
+            Console.WriteLine(book);
+        }
+    }
+
+    public void GetAllBooksOrderByTitleDescending()
+    {
+        List<Book> books = bookRepository.GetAllBookOrderByDescendingTitle();
+
+        foreach (Book book in books)
+        {
+            Console.WriteLine(book);
+        }
+    }
 
 }

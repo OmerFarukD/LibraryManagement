@@ -60,14 +60,17 @@ public class BookRepository
 
     public List<Book> GetAllBooksByTitleContains(string text)
     {
-        List<Book> filteredBooks = new List<Book>();
-        foreach(Book book in books)
-        {
-            if (book.Title.Contains(text,StringComparison.InvariantCultureIgnoreCase))
-            {
-                filteredBooks.Add(book);
-            }
-        }
+        //List<Book> filteredBooks = new List<Book>();
+        //foreach(Book book in books)
+        //{
+        //    if (book.Title.Contains(text,StringComparison.InvariantCultureIgnoreCase))
+        //    {
+        //        filteredBooks.Add(book);
+        //    }
+        //}
+        //return filteredBooks;
+
+        List<Book> filteredBooks = books.FindAll(x=> x.Title.Contains(text,StringComparison.InvariantCultureIgnoreCase));
         return filteredBooks;
     }
 
@@ -132,5 +135,30 @@ public class BookRepository
         }
         books.Remove(deletedBook);
         return deletedBook;
+    }
+
+    public List<Book> GetAllBookOrderByTitle()
+    {
+        List<Book> orderedBooks = books.OrderBy(b=> b.Title).ToList();
+        return orderedBooks;
+    }
+
+
+    public List<Book> GetAllBookOrderByDescendingTitle()
+    {
+        List<Book> orderedBooks = books.OrderByDescending(b => b.Title).ToList();
+        return orderedBooks;
+    }
+
+    public Book GetBookMaxPageSize()
+    {
+
+    }
+
+
+
+    public Book GetBookMinPageSize()
+    {
+
     }
 }
