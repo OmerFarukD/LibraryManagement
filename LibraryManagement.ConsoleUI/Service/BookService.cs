@@ -53,4 +53,22 @@ public class BookService
         Console.WriteLine(book);
     }
 
+
+    public void Add(Book book)
+    {
+        Book created = bookRepository.Add(book);
+        Console.WriteLine("Kitap eklendi : ");
+        Console.WriteLine(created);
+    }
+
+    public void GetAllBooksByPageSizeFilter(int min, int max)
+    {
+        List<Book> books = bookRepository.GetAllBooksByPageSizeFilter(min,max);
+
+        foreach (Book book in books) 
+        {
+            Console.WriteLine(book);
+        }
+    }
+
 }
