@@ -132,4 +132,10 @@ public class BookService
         }
     }
 
+    public void GetAllBookAndAuthorDetails()
+    {
+        List<BookDetailDto> details = bookRepository.GetAllAuthorAndBookDetails();
+        details.ForEach(x=> Console.WriteLine(x));
+    }
+
 }
