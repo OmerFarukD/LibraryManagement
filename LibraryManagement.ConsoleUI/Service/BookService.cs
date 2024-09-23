@@ -57,6 +57,8 @@ public class BookService
 
     public void Add(Book book)
     {
+        BookIdBusinessRules(book.Id);
+        BookISBNBusinessRules(book.ISBN);
         Book created = bookRepository.Add(book);
         Console.WriteLine("Kitap eklendi : ");
         Console.WriteLine(created);
@@ -136,6 +138,34 @@ public class BookService
     {
         List<BookDetailDto> details = bookRepository.GetAllAuthorAndBookDetails();
         details.ForEach(x=> Console.WriteLine(x));
+    }
+
+    public void GetAllDetailsByCategoryId(int categoryId)
+    {
+
+        List<BookDetailDto> details = bookRepository.GetAllDetailsByCategoryId(categoryId);
+        details.ForEach(x => Console.WriteLine(x));
+    }
+
+
+    private void BookIdBusinessRules(int id)
+    {
+        Book? getByIdBook = bookRepository.GetById(id);
+        if (getByIdBook != null)
+        {
+            Console.WriteLine($"Girmiş olduğunuz kitabın Id Alanı Benzersiz olmalıdır: {id}");
+            return;
+        }
+    }
+
+    private void BookISBNBusinessRules(string isbn)
+    {
+        Book? getBookByISBN = bookRepository.GetBookByISBN(isbn);
+        if (getBookByISBN is not null)
+        {
+            Console.WriteLine($"Girmiş olduğunuz kitabın ISBN Alanı Benzersiz olmalıdır: {isbn}");
+            return;
+        }
     }
 
 }

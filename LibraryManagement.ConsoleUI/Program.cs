@@ -53,12 +53,6 @@ using LibraryManagement.ConsoleUI.Service;
 
 
 
-
-
-
-
-
-
 //GetAllBooksByPageSizeFilter();
 
 //GetAllAuthors();
@@ -72,10 +66,10 @@ using LibraryManagement.ConsoleUI.Service;
 BookService bookService = new BookService();
 //bookService.GetAll(); 
 //bookService.GetById(3);
-bookService.GetAllBookAndAuthorDetails();
+bookService.GetAllDetailsByCategoryId(2);
 
 
-
+Book book1 = new Book();
 
 Book GetBookInputs2()
 {
