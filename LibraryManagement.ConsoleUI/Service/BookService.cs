@@ -18,7 +18,7 @@ public class BookService
         }
     }
 
-    public void GetById(int id)
+    public void GetById(Guid id)
     {
         Book? book = bookRepository.GetById(id);
         if(book is null)
@@ -31,7 +31,7 @@ public class BookService
 
     }
 
-    public void Remove(int id)
+    public void Remove(Guid id)
     {
         Book? deletedBook = bookRepository.Remove(id);
         if (deletedBook is null)
@@ -148,7 +148,7 @@ public class BookService
     }
 
 
-    private void BookIdBusinessRules(int id)
+    private void BookIdBusinessRules(Guid id)
     {
         Book? getByIdBook = bookRepository.GetById(id);
         if (getByIdBook != null)

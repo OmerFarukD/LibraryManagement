@@ -106,7 +106,7 @@ public class BookRepository : BaseRepository, IBookRepository
         return created;
     }
 
-    public Book? GetById(int id)
+    public Book? GetById(Guid id)
     {
         Book? book1 = null;
         foreach (Book book in books)
@@ -125,7 +125,7 @@ public class BookRepository : BaseRepository, IBookRepository
         return book1;
     }
 
-    public Book? Remove(int id)
+    public Book? Remove(Guid id)
     {
         Book? deletedBook = GetById(id);
 

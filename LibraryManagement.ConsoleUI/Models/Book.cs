@@ -2,13 +2,13 @@
 
 // Psikoloji
 // pssikoloji
-public sealed class Book : Entity
+public sealed class Book : Entity<Guid>
 {
     public Book()
     {
         
     }
-    public Book(int id,int categoryId, int authorId, string title, string description, int pageSize, string publishDate, string ıSBN) : base(id)
+    public Book(Guid id,int categoryId, int authorId, string title, string description, int pageSize, string publishDate, string ıSBN) : base(id)
     {
         CategoryId = categoryId;
         AuthorId = authorId;

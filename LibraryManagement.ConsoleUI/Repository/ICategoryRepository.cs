@@ -2,7 +2,6 @@
 
 namespace LibraryManagement.ConsoleUI.Repository;
 
-public interface IMemberRepository : IRepository<Member,string>
+public interface ICategoryRepository : IRepository<Category,int>
 {
-
 }

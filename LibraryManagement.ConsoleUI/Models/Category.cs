@@ -1,6 +1,6 @@
 ﻿namespace LibraryManagement.ConsoleUI.Models;
 
-public sealed class Category : Entity
+public sealed class Category : Entity<int>
 {
     public Category()
     {

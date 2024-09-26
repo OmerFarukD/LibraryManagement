@@ -19,12 +19,12 @@ public class MemberRepository : BaseRepository, IMemberRepository
         throw new NotImplementedException();
     }
 
-    public Member? GetById(int id)
+    public Member? GetById(string id)
     {
         throw new NotImplementedException();
     }
 
-    public Member? Remove(int id)
+    public Member? Remove(string id)
     {
         throw new NotImplementedException();
     }

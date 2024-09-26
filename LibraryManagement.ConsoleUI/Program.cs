@@ -71,29 +71,29 @@ bookService.GetAllDetailsByCategoryId(2);
 
 Book book1 = new Book();
 
-Book GetBookInputs2()
-{
-    Console.WriteLine("Lütfen kitap id sini giriniz: ");
-   int id = Convert.ToInt32(Console.ReadLine());
+//Book GetBookInputs2()
+//{
+//    Console.WriteLine("Lütfen kitap id sini giriniz: ");
+//   int id = Convert.ToInt32(Console.ReadLine());
 
-    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
-    string title = Console.ReadLine();
+//    Console.WriteLine("Lütfen kitap başlığını giriniz: ");
+//    string title = Console.ReadLine();
 
-    Console.WriteLine("Lütfen kitap Açıklamasını giriniz: ");
-   string description = Console.ReadLine();
+//    Console.WriteLine("Lütfen kitap Açıklamasını giriniz: ");
+//   string description = Console.ReadLine();
 
-    Console.WriteLine("Lütfen kitap sayfasını giriniz: ");
-   int pageSize = Convert.ToInt32(Console.ReadLine());
+//    Console.WriteLine("Lütfen kitap sayfasını giriniz: ");
+//   int pageSize = Convert.ToInt32(Console.ReadLine());
 
-    Console.WriteLine("Lütfen kitap Yayımlanma Tarihini giriniz: ");
-   string publishDate = Console.ReadLine();
+//    Console.WriteLine("Lütfen kitap Yayımlanma Tarihini giriniz: ");
+//   string publishDate = Console.ReadLine();
 
-    Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
-    string isbn = Console.ReadLine();
+//    Console.WriteLine("Lütfen kitap ISBN numarasını giriniz: ");
+//    string isbn = Console.ReadLine();
 
-    Book book = new Book(id,1,1, title, description, pageSize, publishDate, isbn);
-    return book;
-}
+//    Book book = new Book(id,1,1, title, description, pageSize, publishDate, isbn);
+//    return book;
+//}
 
 //bool AddBookValidator(Book book)
 //{

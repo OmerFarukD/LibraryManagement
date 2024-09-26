@@ -2,7 +2,7 @@
 
 namespace LibraryManagement.ConsoleUI.Models;
 
-public class Member : Entity
+public class Member : Entity<string>
 {
     public string Name { get; set; }
     public string Surname { get; set; }

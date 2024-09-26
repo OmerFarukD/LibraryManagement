@@ -1,6 +1,6 @@
 ﻿namespace LibraryManagement.ConsoleUI.Models;
 
-public sealed class Author : Entity
+public sealed class Author : Entity<int>
 {
 
     public Author()

@@ -3,16 +3,16 @@ using System.Runtime.Intrinsics.Arm;
 
 namespace LibraryManagement.ConsoleUI.Models;
 
-public abstract class Entity
+public abstract class Entity<TId>
 {
-    public int Id { get; set; }
+    public TId Id { get; set; }
 
     protected Entity()
     {
       
     }
 
-    protected Entity(int id) :this()
+    protected Entity(TId id) :this()
     {
         Id = id;
     }
